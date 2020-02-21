@@ -34,8 +34,8 @@ massive({
 
 // //#auth endpoints
 // //TODO login, register, logout, get user
-app.post('/api/login', ctrl.login)
 app.post('/api/register', ctrl.register)
+app.post('/api/login', ctrl.login)
 // app.post('/api/logout', authCtrl.logout)
 // app.get('/api/user', authCtrl.getUser)
 

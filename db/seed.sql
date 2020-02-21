@@ -15,7 +15,8 @@ create table if not exists post (
 );
 
 ALTER TABLE users
-ALTER COLUMN password TEXT
+    ALTER password
+    SET DATA TYPE TEXT
 ;
 
 INSERT INTO users (

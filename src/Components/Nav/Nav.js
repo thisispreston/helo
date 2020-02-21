@@ -9,7 +9,7 @@ class Nav extends React.Component {
 
     this.state = {
       username: '',
-      imageURL: '',
+      profile_pic: '',
     }
   }
 
@@ -19,9 +19,11 @@ class Nav extends React.Component {
         <div className='profile-tag'>
           <img
             alt='profile pic'
-            src={this.state.imageURL}
+            src={this.props.profile_pic}
+            height="75px"
+            width="75px"
           />
-          <p>{this.state.username}</p>
+          <p>{this.props.username}</p>
         </div>
         <div className="nav-buttons">
           <Link to="/dashboard">Home</Link>
@@ -38,10 +40,10 @@ class Nav extends React.Component {
 }
 
 const mapStateToProps = reduxState => {
-  const { username, imageURL } = reduxState
+  const { username, profile_pic } = reduxState.user
   return {
     username,
-    imageURL,
+    profile_pic,
   }
 }
 

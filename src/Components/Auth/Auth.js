@@ -2,6 +2,7 @@ import React from "react"
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUser } from '../../redux/reducer'
+import './Auth.css'
 
 
 class Auth extends React.Component {
@@ -20,26 +21,23 @@ class Auth extends React.Component {
     })
   };
 
-  handleLogin = () => {
-    let { username, password } = this.state
-    axios
-      .post('/api/login', {username, password})
-      .then( res => {
-        const { user_id, username, profile_pic } = res.data
-        this.props.getUser(user_id, username, profile_pic)
-        this.props.history.push('/dashboard')
-      })
-      .catch( err => console.log(err))
-  }
-
   handleRegister = () => {
     let { username, password } = this.state
     axios
       .post('/api/register', {username, password})
       .then( res => {
-        const { user_id, username, profile_pic } = res.data
-        console.log(res.data)
-        this.props.getUser(user_id, username, profile_pic)
+        this.props.getUser(res.data)
+        this.props.history.push('/dashboard')
+      })
+      .catch( err => console.log(err))
+  }
+
+  handleLogin = () => {
+    let { username, password } = this.state
+    axios
+      .post('/api/login', {username, password})
+      .then( res => {
+        this.props.getUser(res.data)
         this.props.history.push('/dashboard')
       })
       .catch( err => console.log(err))
@@ -50,7 +48,7 @@ class Auth extends React.Component {
       <div className="auth-body">
         <div className="auth-card">
           <img
-            alt='profile pic'
+            alt='logo'
             src="https://www.netclipart.com/pp/m/94-940998_winking-emoji-png-play-button-icon-transparent.png"
             height='150px'
             width='150px'

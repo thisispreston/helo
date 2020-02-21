@@ -1,20 +1,14 @@
 const initialState = {
-  user_id: 0,
-  username: '',
-  imageURL: '',
+  user: {},
 }
 
 const GET_USER = 'GET_USER';
 const LOGOUT = 'LOGOUT';
 
-export function getUser(user_id, username, imageURL){
+export function getUser(userInfo){
   return {
       type: GET_USER,
-      payload: {
-        user_id,
-        username,
-        imageURL,
-      }
+      payload: userInfo,
   }
 }
 
@@ -29,16 +23,9 @@ export default function reducer(state = initialState, action){
   const {type, payload} = action;
   switch(type){
       case GET_USER:
-          return {...state, user: payload}
-          //{user: {}, user: {user_id: 1, user_email: 'email'}}
+        return {...state, user: payload}
       case LOGOUT:
-          return {
-            ...state,
-            user_id: 0,
-            username: '',
-            imageURL: '',
-          }
-          //return initialState
+        return {...state, user: {}}
       default:
           return state;
   }
