@@ -5,3 +5,10 @@
   margin: 0;
   padding: 0;
 }
+
+.nav-body {
+  height: 100vh;
+  width: 150px;
+  background-color: coral;
+  position: fixed;
+}

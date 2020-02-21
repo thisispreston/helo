@@ -20,8 +20,8 @@ class Nav extends React.Component {
           <img
             alt='profile pic'
             src={this.props.profile_pic}
-            height="75px"
-            width="75px"
+            height="125px"
+            width="125px"
           />
           <p>{this.props.username}</p>
         </div>

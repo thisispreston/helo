@@ -1,0 +1,58 @@
+.dashboard-body {
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+}
+
+.searchbar {
+  height: 50px;
+  width: 800px;
+  background-color: cornflowerblue;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: stretch;
+}
+
+.search {
+  padding-left: 15px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.searchbar-items {
+  height: 25px;
+}
+
+.search-input {
+  width: 500px;
+  font-size: large;
+}
+
+.checkbox {
+  padding-right: 10px;
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.posts {
+  margin-top: 25px;
+  height: 1000px;
+  width: 800px;
+  background-color: cornflowerblue;
+}
