@@ -23,9 +23,10 @@ module.exports = {
         }
     },
     register: async (req, res, next) => {
-        const { username, password, imageURL } = req.body
+        const { username, password } = req.body
         const { session } = req
         const db = req.app.get('db')
+        let imageURL = `https://robohash.org/${username}.png`
 
         let user = await db.check_user([username])
         user = user[0]

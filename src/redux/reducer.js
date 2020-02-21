@@ -7,10 +7,14 @@ const initialState = {
 const GET_USER = 'GET_USER';
 const LOGOUT = 'LOGOUT';
 
-export function getUser(userObj){
+export function getUser(user_id, username, imageURL){
   return {
       type: GET_USER,
-      payload: userObj,
+      payload: {
+        user_id,
+        username,
+        imageURL,
+      }
   }
 }
 
@@ -28,7 +32,12 @@ export default function reducer(state = initialState, action){
           return {...state, user: payload}
           //{user: {}, user: {user_id: 1, user_email: 'email'}}
       case LOGOUT:
-          return {...state, user: {}}
+          return {
+            ...state,
+            user_id: 0,
+            username: '',
+            imageURL: '',
+          }
           //return initialState
       default:
           return state;

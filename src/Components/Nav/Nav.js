@@ -17,7 +17,10 @@ class Nav extends React.Component {
     return (
       <div className="nav-body">
         <div className='profile-tag'>
-          <img src={this.state.imageURL} />
+          <img
+            alt='profile pic'
+            src={this.state.imageURL}
+          />
           <p>{this.state.username}</p>
         </div>
         <div className="nav-buttons">

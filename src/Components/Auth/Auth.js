@@ -1,5 +1,8 @@
-import React from "react";
+import React from "react"
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { getUser } from '../../redux/reducer'
+
 
 class Auth extends React.Component {
   constructor(props) {
@@ -22,6 +25,8 @@ class Auth extends React.Component {
     axios
       .post('/api/login', {username, password})
       .then( res => {
+        const { user_id, username, profile_pic } = res.data
+        this.props.getUser(user_id, username, profile_pic)
         this.props.history.push('/dashboard')
       })
       .catch( err => console.log(err))
@@ -32,6 +37,9 @@ class Auth extends React.Component {
     axios
       .post('/api/register', {username, password})
       .then( res => {
+        const { user_id, username, profile_pic } = res.data
+        console.log(res.data)
+        this.props.getUser(user_id, username, profile_pic)
         this.props.history.push('/dashboard')
       })
       .catch( err => console.log(err))
@@ -41,7 +49,8 @@ class Auth extends React.Component {
     return (
       <div className="auth-body">
         <div className="auth-card">
-          <img 
+          <img
+            alt='profile pic'
             src="https://www.netclipart.com/pp/m/94-940998_winking-emoji-png-play-button-icon-transparent.png"
             height='150px'
             width='150px'
@@ -78,4 +87,4 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+export default connect(null, {getUser})(Auth);
