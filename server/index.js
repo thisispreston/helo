@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
+const ctrl = require('./controller')
 
 // const ctrl = require('./controller')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
@@ -33,8 +34,8 @@ massive({
 
 // //#auth endpoints
 // //TODO login, register, logout, get user
-// app.post('/api/login', authCtrl.login)
-// app.post('/api/register', authCtrl.register)
+app.post('/api/login', ctrl.login)
+app.post('/api/register', ctrl.register)
 // app.post('/api/logout', authCtrl.logout)
 // app.get('/api/user', authCtrl.getUser)
 
