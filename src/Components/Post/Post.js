@@ -4,9 +4,13 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-
-    // }
+    this.state = {
+      title: '',
+      img: '',
+      content: '',
+      authorName: '',
+      authorPic: '',
+    }
   }
 
 
@@ -14,7 +18,9 @@ class Post extends React.Component {
   render() {
     return (
       <div className="post-body">
-        Post
+        {this.props.title}
+        {this.props.id}
+        {this.props.img}
       </div>
     );
   }

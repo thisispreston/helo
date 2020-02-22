@@ -10,8 +10,7 @@ create table if not exists post (
     title VARCHAR(45),
     img TEXT,
     content TEXT,
-    author_id INT REFERENCES users(user_id),
-    text varchar(250)
+    author_id INT REFERENCES users(user_id)
 );
 
 ALTER TABLE users

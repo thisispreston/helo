@@ -19,7 +19,7 @@ class Auth extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     })
-  };
+  }
 
   handleRegister = () => {
     let { username, password } = this.state

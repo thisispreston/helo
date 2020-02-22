@@ -3,6 +3,7 @@ const express = require('express')
 const massive = require('massive')
 const session = require('express-session')
 const ctrl = require('./controller')
+const postsCtrl = require('./postsController')
 
 // const ctrl = require('./controller')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
@@ -39,10 +40,9 @@ app.post('/api/login', ctrl.login)
 // app.post('/api/logout', authCtrl.logout)
 // app.get('/api/user', authCtrl.getUser)
 
-// //#post endpoints
-// //TODO get post put delete posts
-// //?user id
-// app.get('/api/posts/:id', ctrl.getPosts)
+app.get('/api/posts', postsCtrl.getPosts)
+//user_id
+app.get('/api/posts/:id', postsCtrl.userPosts)
 // //?user id
 // app.post('/api/posts/:id', ctrl.addPost)
 // //?post id
