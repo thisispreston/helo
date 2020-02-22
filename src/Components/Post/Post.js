@@ -18,9 +18,15 @@ class Post extends React.Component {
   render() {
     return (
       <div className="post-body">
-        {this.props.title}
-        {this.props.id}
-        {this.props.img}
+        <h1>
+          {this.props.title}
+        </h1>
+        <p>
+          {this.props.id}
+        </p>
+        <img
+          src={this.props.img}
+        />
       </div>
     );
   }
