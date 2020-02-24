@@ -42,10 +42,6 @@ class Dashboard extends React.Component {
     this.getPosts()
   }
 
-  handleClick = () => {
-    this.props.history.push('/view-post')
-  }
-
   render() {
     let posts = this.state.posts.map( e => {
       return (
@@ -56,7 +52,6 @@ class Dashboard extends React.Component {
           title={e.title}
           content={e.content}
           authorName={e}
-          onClick={this.handleClick}
           // delete={this.delete}
           // toEditForm={this.toEditForm}
         />
