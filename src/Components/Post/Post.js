@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from 'react-redux'
+import { getUser } from '../../redux/reducer'
 
 class Post extends React.Component {
   constructor(props) {
@@ -16,8 +18,11 @@ class Post extends React.Component {
 
 
   render() {
+  console.log(this.props)
     return (
-      <div className="post-body">
+      <div
+        className="post-body"
+      >
         <h1>
           {this.props.title}
         </h1>
@@ -32,4 +37,39 @@ class Post extends React.Component {
   }
 }
 
-export default Post;
+export default connect(null, {getUser})(Post);
+
+
+// render() {
+//   console.log(this.props)
+//   return (
+//     <>
+//       {this.props.location.pathname === "/dashboard" ? (
+//         <div className="post-body">
+//           <h1>
+//             {this.props.title}
+//           </h1>
+//           <p>
+//             {this.props.id}
+//           </p>
+//           <img
+//             src={this.props.img}
+//           />
+//         </div>
+//     ) : (
+//       <div className="post-body">
+//         <h1>
+//           {this.props.title}
+//         </h1>
+//         <p>
+//           by: {this.props.id}
+//         </p>
+//         <img
+//           src={this.props.img}
+//         />
+//       </div>
+//     )}
+//     </>
+//   );
+// }
+// }

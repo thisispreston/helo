@@ -55,6 +55,7 @@ class Dashboard extends React.Component {
           img={e.img}
           title={e.title}
           content={e.content}
+          authorName={e}
           onClick={this.handleClick}
           // delete={this.delete}
           // toEditForm={this.toEditForm}
