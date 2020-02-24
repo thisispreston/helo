@@ -37,8 +37,8 @@ massive({
 // //TODO login, register, logout, get user
 app.post('/api/register', ctrl.register)
 app.post('/api/login', ctrl.login)
+// app.get('/api/user/:id', ctrl.getUser)
 // app.post('/api/logout', authCtrl.logout)
-// app.get('/api/user', authCtrl.getUser)
 
 app.get('/api/posts', postsCtrl.getPosts)
 //user_id

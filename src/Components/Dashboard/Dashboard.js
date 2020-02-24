@@ -1,10 +1,8 @@
 import React from "react";
 import './Dashboard.css'
 import axios from 'axios'
-import Post from '../Post/Post'
+// import Post from '../Post/Post'
 import { connect } from 'react-redux'
-import { getUser } from '../../redux/reducer'
-
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -42,19 +40,34 @@ class Dashboard extends React.Component {
     this.getPosts()
   }
 
+  handleClick = (id) => {
+    this.props.history.push(`/view-post/${id}`)
+  }
+
   render() {
     let posts = this.state.posts.map( e => {
       return (
-        <Post
-          key={e.author_id}
-          id={e.author_id}
-          img={e.img}
-          title={e.title}
-          content={e.content}
-          authorName={e}
+        <div 
+          className="posts-card"
+          key={e.post_id}
+          onClick={() => {
+            this.handleClick(e.author_id)
+          }}
+
           // delete={this.delete}
           // toEditForm={this.toEditForm}
-        />
+        >
+          <h1>
+            {e.title}
+          </h1>
+          <p>
+            {e.username}
+          </p>
+          <img
+            alt="post"
+            src={e.img}
+          />
+        </div>
       )
     })
 
@@ -69,6 +82,7 @@ class Dashboard extends React.Component {
               onChange={ e => this.handleInput(e)}
             />
             <img
+              alt="search button"
               className='search-button searchbar-items'
               src="https://image.flaticon.com/icons/svg/49/49116.svg"
               height='35px'
@@ -99,4 +113,13 @@ class Dashboard extends React.Component {
   }
 }
 
-export default connect(null, {getUser})(Dashboard);
+const mapStateToProps = reduxState => {
+  const { user_id, username, profile_pic } = reduxState.user
+  return {
+    user_id,
+    username,
+    profile_pic,
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);

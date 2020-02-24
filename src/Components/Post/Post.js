@@ -1,4 +1,5 @@
 import React from "react";
+// import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -15,45 +16,34 @@ class Post extends React.Component {
     }
   }
 
-  handleClick = () => {
-    this.props.history.push('/view-post')
+  componentDidMount () {
+
   }
 
   render() {
-    console.log(this.props)
     return (
-      <>
-        {this.props.location.pathname === "/dashboard" ? (
-          <div 
-            className="post-body"
-            onClick={this.handleClick}
-          >
-            <h1>
-              {this.props.title}
-            </h1>
-            <p>
-              {this.props.id}
-            </p>
-            <img
-              src={this.props.img}
-            />
-          </div>
-      ) : (
-        <div className="post-body">
-          <h1>
-            {this.props.title}
-          </h1>
+      <div className="post-body">
+        <h1>
+          {this.props.title}
+        </h1>
+        <div className='user-badge'>
           <p>
-            by: {this.props.id}
+            by: {this.state.authorName}
           </p>
           <img
-            src={this.props.img}
+            alt='post'
+            src={this.state.authorPic}
           />
         </div>
-      )}
-      </>
-    );
+        <img 
+          alt="post"
+          src={this.state.img}
+        />
+        <p>
+          {this.state.content}
+        </p>
+      </div>
+    )}
   }
-}
 
 export default connect(null)(withRouter(Post));

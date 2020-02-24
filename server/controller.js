@@ -42,6 +42,20 @@ module.exports = {
       res.status(401).send('Incorrect password.')
     }
     },
+    // getUser: async (req, res, next) => {
+    //   const { id } = req.params
+    //   const db = req.app.get('db')
+  
+    //   let user = await db.get_user([id])
+    //   let posts = await db.get_posts()
+
+    //   if(user[0] && posts[0]) {
+    //     let info = {...user[0], ...posts[0]}
+    //     res.status(200).send(info)
+    //   } else {
+    //     res.sendStatus(500)
+    //   }
+    // },
     // logout: (req, res) => {
     //     req.session.destroy()
     //     res.sendStatus(200)
