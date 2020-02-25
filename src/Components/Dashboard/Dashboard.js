@@ -33,20 +33,22 @@ class Dashboard extends React.Component {
         this.setState({
           posts: res.data,
         })
+        console.log(res.data)
       })
       .catch( err => console.log(err))
   }
 
   toggleCheckbox = () => {
     if (this.state.userPosts === true) {
-      return this.setState({
+      this.setState({
         userPosts: false,
       })
+      return this.getPosts()
     } else if (this.state.userPosts === false) {
-      return this.setState({
+      this.setState({
         userPosts: true,
       })
-    this.getPosts()
+      return this.getPosts()
     }
   }
 
@@ -67,7 +69,6 @@ class Dashboard extends React.Component {
           onClick={() => {
             this.handleClick(e.author_id)
           }}
-
           // delete={this.delete}
           // toEditForm={this.toEditForm}
         >
