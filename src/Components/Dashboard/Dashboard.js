@@ -26,14 +26,28 @@ class Dashboard extends React.Component {
   };
 
   getPosts = () => {
+    const { searchInput, userPosts } = this.state
     axios
-      .get('/api/posts')
+      .get('/api/posts', {searchInput, userPosts})
       .then( res => {
         this.setState({
           posts: res.data,
         })
       })
       .catch( err => console.log(err))
+  }
+
+  toggleCheckbox = () => {
+    if (this.state.userPosts === true) {
+      return this.setState({
+        userPosts: false,
+      })
+    } else if (this.state.userPosts === false) {
+      return this.setState({
+        userPosts: true,
+      })
+    this.getPosts()
+    }
   }
 
   resetSearch = () => {
@@ -101,7 +115,8 @@ class Dashboard extends React.Component {
             <input
               className='checkbox-box searchbar-items'
               type='checkbox'
-              // onClick={}
+              value={this.state.userPosts}
+              onClick={this.toggleCheckbox}
             />
           </div>
         </div>
