@@ -1,5 +1,5 @@
 import React from "react";
-// import axios from 'axios'
+import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -17,14 +17,30 @@ class Post extends React.Component {
   }
 
   componentDidMount () {
+    this.getPosts(this.props.user_id)
+  }
 
+  getPosts = (id) => {
+    axios
+      .get(`/api/posts/${id}`)
+      .then( res => {
+        let {username, profile_pic, title, img, content } = res.data
+        this.setState({
+          title,
+          img,
+          content,
+          authorName: username,
+          authorPic: profile_pic,
+        })
+      })
+      .catch( err => console.log(err))
   }
 
   render() {
     return (
       <div className="post-body">
         <h1>
-          {this.props.title}
+          {this.state.title}
         </h1>
         <div className='user-badge'>
           <p>

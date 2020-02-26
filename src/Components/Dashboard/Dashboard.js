@@ -16,26 +16,26 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount () {
-    this.getPosts()
+    this.getPosts(this.props.user_id)
+  }
+
+  getPosts = (id) => {
+    const { searchInput, userPosts } = this.state
+    axios
+      .get(`/api/posts/${id}`, {searchInput, userPosts})
+      .then( res => {
+        console.log(res.data)
+        this.setState({
+          posts: res.data,
+        })
+      })
+      .catch( err => console.log(err))
   }
 
   handleInput = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
     })
-  };
-
-  getPosts = () => {
-    const { searchInput, userPosts } = this.state
-    axios
-      .get('/api/posts', {searchInput, userPosts})
-      .then( res => {
-        this.setState({
-          posts: res.data,
-        })
-        console.log(res.data)
-      })
-      .catch( err => console.log(err))
   }
 
   toggleCheckbox = () => {
@@ -43,21 +43,24 @@ class Dashboard extends React.Component {
       this.setState({
         userPosts: false,
       })
-      return this.getPosts()
-    } else if (this.state.userPosts === false) {
+      return this.getPosts(this.props.user_id)
+    } else {
       this.setState({
         userPosts: true,
       })
-      return this.getPosts()
+      return this.getPosts(this.props.user_id)
     }
   }
 
   resetSearch = () => {
-    this.getPosts()
+    this.setState({
+      searchInput: '',
+    })
+    this.getPosts(this.props.user_id)
   }
 
   handleClick = (id) => {
-    this.props.history.push(`/view-post/${id}`)
+    this.props.history.push(`/view-post/`)
   }
 
   render() {

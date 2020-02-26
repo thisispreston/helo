@@ -40,10 +40,8 @@ app.post('/api/login', ctrl.login)
 // app.get('/api/user/:id', ctrl.getUser)
 // app.post('/api/logout', authCtrl.logout)
 
-app.get('/api/posts', postsCtrl.getPosts)
+app.get('/api/posts/:id', postsCtrl.getPosts)
 //user_id
-app.get('/api/posts/:id', postsCtrl.userPosts)
-// //?user id
 // app.post('/api/posts/:id', ctrl.addPost)
 // //?post id
 // app.put('/api/posts/:id', ctrl.editPost)
