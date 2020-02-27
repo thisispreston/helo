@@ -17,18 +17,19 @@ class Post extends React.Component {
   }
 
   componentDidMount () {
-    this.getPosts(this.props.user_id)
+    this.getOnePost()
   }
 
-  getPosts = (id) => {
+  getOnePost = () => {
+    const { id } = this.props.match.params
     axios
-      .get(`/api/posts/${id}`)
+      .get(`/api/post/${id}`)
       .then( res => {
-        let {username, profile_pic, title, img, content } = res.data
+        const {username, profile_pic, title, img, content } = res.data
         this.setState({
-          title,
-          img,
-          content,
+          title: title,
+          img: img,
+          content: content,
           authorName: username,
           authorPic: profile_pic,
         })
@@ -37,6 +38,7 @@ class Post extends React.Component {
   }
 
   render() {
+    
     return (
       <div className="post-body">
         <h1>
@@ -60,6 +62,6 @@ class Post extends React.Component {
         </p>
       </div>
     )}
-  }
+}
 
 export default connect(null)(withRouter(Post));

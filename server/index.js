@@ -41,6 +41,8 @@ app.post('/api/login', ctrl.login)
 // app.post('/api/logout', authCtrl.logout)
 
 app.get('/api/posts/:id', postsCtrl.getPosts)
+app.get('/api/post/:id', postsCtrl.getOnePost)
+
 //user_id
 // app.post('/api/posts/:id', ctrl.addPost)
 // //?post id

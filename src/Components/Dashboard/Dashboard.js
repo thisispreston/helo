@@ -26,7 +26,6 @@ class Dashboard extends React.Component {
     axios
       .get(`/api/posts/${user_id}?searchInput=${searchInput}&userPosts=${userPosts}`)
       .then( res => {
-        console.log(res.data)
         this.setState({
           posts: res.data,
         })
@@ -55,7 +54,7 @@ class Dashboard extends React.Component {
   }
 
   handleClick = (id) => {
-    this.props.history.push(`/view-post/`)
+    this.props.history.push(`/view-post/${id}`)
   }
 
   render() {
@@ -64,8 +63,9 @@ class Dashboard extends React.Component {
         <div 
           className="posts-card"
           key={e.post_id}
+          id={e.post_id}
           onClick={() => {
-            this.handleClick(e.author_id)
+            this.handleClick(e.post_id)
           }}
           // delete={this.delete}
           // toEditForm={this.toEditForm}
