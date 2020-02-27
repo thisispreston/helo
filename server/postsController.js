@@ -48,12 +48,12 @@ module.exports = {
       .then(() => res.sendStatus(200))
       .catch(err => res.status(500).send(err))
   },
-  deletePost: async (req, res) => {
-    const { id } = req.params
-    const db = req.app.get('db')
+  // deletePost: async (req, res) => {
+  //   const { id } = req.params
+  //   const db = req.app.get('db')
 
-    await db.delete_post(id)
-      .then( () => res.sendStatus(200))
-      .catch( err => console.log(err))
-  },
+  //   await db.delete_post(id)
+  //     .then( () => res.sendStatus(200))
+  //     .catch( err => console.log(err))
+  // },
 }

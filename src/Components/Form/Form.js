@@ -48,8 +48,10 @@ class Form extends React.Component {
     const { user_id } = this.props
     axios
       .post(`/api/posts/${user_id}`, { title, content, img })
-      .then(this.props.history.push(`/dashboard`))
+      .then(() => this.clearInput())
       .catch(err => console.log(err))
+    
+    this.props.history.push(`/dashboard`)
   }
 
   clearInput = () => {

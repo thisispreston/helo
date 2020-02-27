@@ -46,7 +46,7 @@ app.get('/api/post/:id', postsCtrl.getOnePost)
 // user_id
 app.post('/api/posts/:id', postsCtrl.newPost)
 // author_id
-app.delete('/api/posts/:id', ctrl.deletePost)
+// app.delete('/api/posts/:id', ctrl.deletePost)
 
 // //?post id
 // app.put('/api/posts/:id', ctrl.editPost)
