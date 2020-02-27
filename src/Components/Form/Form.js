@@ -47,7 +47,7 @@ class Form extends React.Component {
     const { title, content, img } = this.state
     const { user_id } = this.props
     axios
-      .post(`/api/post/${user_id}`, { title, content, img })
+      .post(`/api/posts/${user_id}`, { title, content, img })
       .then(this.props.history.push(`/dashboard`))
       .catch(err => console.log(err))
   }

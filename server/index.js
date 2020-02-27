@@ -33,8 +33,8 @@ massive({
   console.log('Database connected.')
 })
 
-// //#auth endpoints
-// //TODO login, register, logout, get user
+// #auth endpoints
+// TODO login, register, logout, get user
 app.post('/api/register', ctrl.register)
 app.post('/api/login', ctrl.login)
 // app.get('/api/user/:id', ctrl.getUser)
@@ -43,8 +43,10 @@ app.post('/api/login', ctrl.login)
 app.get('/api/posts/:id', postsCtrl.getPosts)
 app.get('/api/post/:id', postsCtrl.getOnePost)
 
+// user_id
 app.post('/api/posts/:id', postsCtrl.newPost)
+// author_id
+app.delete('/api/posts/:id', ctrl.deletePost)
+
 // //?post id
 // app.put('/api/posts/:id', ctrl.editPost)
-// //?post id
-// app.delete('/api/posts/:id', ctrl.deletePost)
