@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Form.css"
 import axios from 'axios'
+import { connect } from 'react-redux'
 
 class Form extends React.Component {
   constructor (props) {
@@ -42,13 +43,14 @@ class Form extends React.Component {
     })
   }
 
-  // postProduct (name, price, img) {
-  //   axios
-  //     .post('/api/product', { name, price, img })
-  //     .then(() => this.props.getProducts())
-  //     .catch(err => console.log(err))
-  //   this.clearInput()
-  // }
+  newPost = () => {
+    const { title, content, img } = this.state
+    const { user_id } = this.props
+    axios
+      .post(`/api/post/${user_id}`, { title, content, img })
+      .then(this.props.history.push(`/dashboard`))
+      .catch(err => console.log(err))
+  }
 
   clearInput = () => {
     this.setState({
@@ -100,40 +102,40 @@ class Form extends React.Component {
             placeholder="Post Title"
             value={this.state.title}
           />
-          <input
-            type='number'
+          <textarea
             className="content Input"
             onChange={this.handleChangeContent}
             placeholder="Post Content"
             value={this.state.content}
+            maxLength='250'
           />
         </div>
         <div className="buttons">
           <button
             className="cancelButton"
-            onClick={() => {this.clearInput()}}
+            onClick={this.clearInput}
           >
             Cancel
           </button>
-          {this.state.editingID ?
-            (<button
-              className="saveButton"
-              onClick={() => this.editProduct(this.state.id, this.state.name, this.state.price, this.state.img)} 
-              >
-                Save
-              </button>
-            ) : (
-              <button
-              className="addButton"
-              onClick={() => {this.postProduct(this.state.name, this.state.price, this.state.img)}}
-              >
-                Add to Inventory
-              </button>
-            )}
+          <button
+            className="postButton"
+            onClick={this.newPost}
+          >
+            Create Post
+          </button>
         </div>
     </div>
     )
   }
 }
 
-export default Form
+const mapStateToProps = reduxState => {
+  const { user_id, username, profile_pic } = reduxState.user
+  return {
+    user_id,
+    username,
+    profile_pic,
+  }
+}
+
+export default connect(mapStateToProps)(Form);
