@@ -16,13 +16,15 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount () {
-    this.getPosts(this.props.user_id)
-  }
+    this.getPosts()
+  } 
 
-  getPosts = (id) => {
+  getPosts = () => {
     const { searchInput, userPosts } = this.state
+    const { user_id } = this.props
+
     axios
-      .get(`/api/posts/${id}`, {searchInput, userPosts})
+      .get(`/api/posts/${user_id}?searchInput=${searchInput}&userPosts=${userPosts}`)
       .then( res => {
         console.log(res.data)
         this.setState({
@@ -38,25 +40,18 @@ class Dashboard extends React.Component {
     })
   }
 
-  toggleCheckbox = () => {
-    if (this.state.userPosts === true) {
-      this.setState({
-        userPosts: false,
-      })
-      return this.getPosts(this.props.user_id)
-    } else {
-      this.setState({
-        userPosts: true,
-      })
-      return this.getPosts(this.props.user_id)
-    }
+  toggleCheckbox = async () => {
+    await this.setState({
+      userPosts: !this.state.userPosts
+    })
+    this.getPosts()
   }
 
-  resetSearch = () => {
-    this.setState({
+  resetSearch = async () => {
+    await this.setState({
       searchInput: '',
     })
-    this.getPosts(this.props.user_id)
+    this.getPosts()
   }
 
   handleClick = (id) => {
@@ -97,6 +92,7 @@ class Dashboard extends React.Component {
               className='search-input searchbar-items'
               placeholder="Search thru post content"
               name="searchInput"
+              value={this.state.searchInput}
               onChange={ e => this.handleInput(e)}
             />
             <img
@@ -105,11 +101,11 @@ class Dashboard extends React.Component {
               src="https://image.flaticon.com/icons/svg/49/49116.svg"
               height='35px'
               width='35px'
-              // onClick={}
+              onClick={this.getPosts}
             />
             <button
               className='reset searchbar-items'
-              // onClick={}
+              onClick={this.resetSearch}
             >
               Reset
             </button>
@@ -119,8 +115,8 @@ class Dashboard extends React.Component {
             <input
               className='checkbox-box searchbar-items'
               type='checkbox'
-              value={this.state.userPosts}
-              onClick={this.toggleCheckbox}
+              checked={this.state.userPosts}
+              onChange={this.toggleCheckbox}
             />
           </div>
         </div>
